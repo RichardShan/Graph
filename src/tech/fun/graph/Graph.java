@@ -22,7 +22,7 @@ public interface Graph {
      * @param v 顶点 v
      * @return adj(v)
      */
-    Iterator<Integer> adj(int v);
+    Iterable<Integer> adj(int v);
 
     /**
      * 顶点 v 的度
@@ -45,4 +45,6 @@ public interface Graph {
      * @return e
      */
     int getE();
+
+    void validVertex(int v);
 }

@@ -3,7 +3,6 @@ package tech.fun.graph;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -68,7 +67,7 @@ public class AdjMatrix implements Graph {
         return adj[v][w] == 1;
     }
 
-    public Iterator<Integer> adj(int v) {
+    public Iterable<Integer> adj(int v) {
         validVertex(v);
         ArrayList<Integer> adjVertices = new ArrayList<>();
         for (int i = 0; i < V; i++) {
@@ -76,7 +75,7 @@ public class AdjMatrix implements Graph {
                 adjVertices.add(i);
             }
         }
-        return adjVertices.iterator();
+        return adjVertices;
     }
 
     public int degree(int v) {
@@ -92,7 +91,7 @@ public class AdjMatrix implements Graph {
         return E;
     }
 
-    private void validVertex(int v) {
+    public void validVertex(int v) {
         if (v < 0 || v >= V) {
             throw new IllegalArgumentException("Vertex " + v + " is invalid");
         }

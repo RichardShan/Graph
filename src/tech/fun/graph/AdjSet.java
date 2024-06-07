@@ -2,7 +2,6 @@ package tech.fun.graph;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -18,6 +17,8 @@ import java.util.TreeSet;
  * @since 2024-06-06
  */
 public class AdjSet implements Graph {
+
+    private final TreeSet<Integer> EMPTY = new TreeSet<>();
 
     private int V;
     private int E;
@@ -75,12 +76,15 @@ public class AdjSet implements Graph {
     public boolean hasEdge(int v, int w) {
         validVertex(v);
         validVertex(w);
+        if (adj[v] == null) {
+            return false;
+        }
         return adj[v].contains(w);
     }
 
-    public Iterator<Integer> adj(int v) {
+    public Iterable<Integer> adj(int v) {
         validVertex(v);
-        return adj[v].iterator();
+        return adj[v] == null ? EMPTY : adj[v];
     }
 
     public int degree(int v) {
@@ -96,7 +100,7 @@ public class AdjSet implements Graph {
         return E;
     }
 
-    private void validVertex(int v) {
+    public void validVertex(int v) {
         if (v < 0 || v >= V) {
             throw new IllegalArgumentException("Vertex " + v + " is invalid");
         }

@@ -78,9 +78,9 @@ public class AdjList implements Graph {
         return adj[v].contains(w);
     }
 
-    public Iterator<Integer> adj(int v) {
+    public Iterable<Integer> adj(int v) {
         validVertex(v);
-        return adj[v].iterator();
+        return adj[v];
     }
 
     public int degree(int v) {
@@ -96,7 +96,7 @@ public class AdjList implements Graph {
         return E;
     }
 
-    private void validVertex(int v) {
+    public void validVertex(int v) {
         if (v < 0 || v >= V) {
             throw new IllegalArgumentException("Vertex " + v + " is invalid");
         }
